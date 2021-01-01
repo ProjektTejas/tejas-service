@@ -1,0 +1,13 @@
+# since this will be deployed to lambda
+FROM lambci/lambda:build-python3.8
+
+# AWS Lambda uses mangum
+RUN pip install mangum
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY . .

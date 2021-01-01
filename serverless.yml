@@ -1,0 +1,84 @@
+service: tejas
+org: tensorclan
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: ap-south-1
+  timeout: 60
+  environment:
+    S3_BUCKET: thetensorclan-models
+    PRODUCTION: TRUE
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - s3:getObject
+      Resource: arn:aws:s3:::thetensorclan-models/*
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
+      Resource: "*"
+  apiGateway:
+    binaryMediaTypes:
+      - "multipart/form-data"
+      - "*/*"
+
+functions:
+  tejas:
+    handler: tejas.handler
+    memorySize: 704
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: /{proxy+}
+      # - websocket:
+      #     route: $connect
+      # - websocket:
+      #     route: $disconnect
+      # - websocket:
+      #     route: $default
+    fileSystemConfig:
+      localMountPath: /mnt/tejas-fs
+      arn: arn:aws:elasticfilesystem:ap-south-1:668527606260:access-point/fsap-0ed6c22fc0aa6a295
+    vpc:
+      securityGroupIds:
+        - sg-07c194e6b1aa88b25
+      subnetIds:
+        - subnet-64b8f40c
+        - subnet-0db20f41
+        - subnet-2a3fcf51
+    environment:
+      TEJAS_LAMBDA: true
+      TEJAS_LIBS_PATH: /mnt/tejas-fs/tejas-libs
+
+resources:
+  Resources:
+    tejasSocketsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: tejassockets
+        AttributeDefinitions:
+          - AttributeName: connectionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: connectionId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+package:
+  exclude:
+    - requirements/
+    - requirements/**
