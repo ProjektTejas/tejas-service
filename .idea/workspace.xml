@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cad5ed83-cfc3-4b32-a06a-af7885329a6a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tejas/tasks/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tejas/tasks/model_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/core/celery_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/core/celery_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/dataset/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/dataset/zip_dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/models/mobilenet_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/ml/trainer.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="08a24071-325d-446e-9ba6-526edee7798d" />
+  <component name="ProjectId" id="1mTjSjsCYBZNVvrrncHcXE3CCSC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tejas-ml-service" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cad5ed83-cfc3-4b32-a06a-af7885329a6a" name="Default Changelist" comment="" />
+      <created>1609524476319</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609524476319</updated>
+      <workItem from="1609524477874" duration="331000" />
+      <workItem from="1609524820982" duration="69000" />
+      <workItem from="1609524915098" duration="5865000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-706" y="194" key="FileChooserDialogImpl" timestamp="1609565238344">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-706" y="194" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609565238344" />
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1609527406519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609527406519" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1609527406518">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609527406518" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1609527406518">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609527406518" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1609527406519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609527406519" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1609525002733">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609525002733" />
+  </component>
+</project>
