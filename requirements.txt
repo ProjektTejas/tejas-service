@@ -4,4 +4,5 @@ fastapi==0.63.0
 mangum==0.10.0
 loguru==0.5.3
 boto3==1.16.47
+python-multipart==0.0.5
 # celery==5.0.5

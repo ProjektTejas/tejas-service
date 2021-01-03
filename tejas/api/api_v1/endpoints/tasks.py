@@ -1,11 +1,17 @@
-from celery.result import AsyncResult
 from fastapi import APIRouter
 
-from tejas.core.celery_app import celery_app
+from tejas.core.boto_client import tasks_table
 
 router = APIRouter()
 
 
-@router.get("check_task/{id}")
-def check_task(task_id: str):
-    task: AsyncResult = celery_app.AsyncResult(task_id)
+@router.get("/task_details")
+def task_details(*, task_id: str):
+    task_return = tasks_table.get_item(
+        Key={
+            "taskId": task_id
+        }
+    )['Item']
+
+    return task_return
+
