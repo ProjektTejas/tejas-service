@@ -18,11 +18,13 @@ class Settings(BaseSettings):
 
     LOGURU_FORMAT: str = "{time} {name}.{function}.{line} [{level}]: {message}"
 
-    TEJAS_MODEL_TRAIN_LAMBDA_ARN: str = os.environ['TEJAS_MODEL_TRAIN_LAMBDA_ARN']
+    TEJAS_MODEL_TRAIN_LAMBDA_ARN: str = os.environ["TEJAS_MODEL_TRAIN_LAMBDA_ARN"]
 
     TASKS_TABLE = os.environ["TASKS_TABLE"]
 
     MODELS_PATH = Path(os.environ["TEJAS_MODELS_PATH"])
+
+    MODELS_BUCKET: str = os.environ["TEJAS_MODELS_BUCKET"]
 
     DATASETS_PATH = Path(os.environ["TEJAS_DATASETS_PATH"])
 
