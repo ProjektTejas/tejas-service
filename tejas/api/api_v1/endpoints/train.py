@@ -3,7 +3,7 @@ import shutil
 import uuid
 
 from fastapi import APIRouter, UploadFile, File, Form
-from  fastapi.responses import FileResponse
+from fastapi.responses import FileResponse
 from pathlib import Path
 
 from tejas import schemas, settings
@@ -12,7 +12,7 @@ from tejas.core.boto_client import lambda_client, tasks_table
 router = APIRouter()
 
 
-@router.post("/train_model")
+@router.post("/train_model", response_model=schemas.TaskId)
 def create_train_task(
     *, model_name: str = Form(...), file: UploadFile = File(...)
 ):
@@ -24,17 +24,20 @@ def create_train_task(
     save_upload_file(file, dataset_path)
 
     # invoke the model training process
+    task_id: str = str(uuid.uuid4())
     lambda_client.invoke(
         FunctionName=settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN,
         InvocationType="Event",
         Payload=json.dumps({
-            "taskId": str(uuid.uuid4()),
+            "taskId": task_id,
             "args": {
                 "datasetZip": str(dataset_path),
                 "modelName": model_name
             }
         }),
     )
+
+    return {"taskId": task_id}
 
 
 def save_upload_file(upload_file: UploadFile, destination: Path) -> None:

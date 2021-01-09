@@ -20,19 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cad5ed83-cfc3-4b32-a06a-af7885329a6a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/classify.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tejas/core/boto_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tejas/api/api_v1/exceptions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverless.yml" beforeDir="false" afterPath="$PROJECT_DIR$/serverless.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tejas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/classify.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/api/api_v1/endpoints/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tejas/core/celery_app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tejas/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/core/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tejas/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tejas/worker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/schemas/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tejas/schemas/msg.py" beforeDir="false" afterPath="$PROJECT_DIR$/tejas/schemas/msg.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +69,8 @@
       <updated>1609524476319</updated>
       <workItem from="1609524477874" duration="331000" />
       <workItem from="1609524820982" duration="69000" />
-      <workItem from="1609524915098" duration="27859000" />
+      <workItem from="1609524915098" duration="31816000" />
+      <workItem from="1610135364616" duration="13545000" />
     </task>
     <servers />
   </component>
@@ -94,28 +90,29 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-706" y="194" key="FileChooserDialogImpl" timestamp="1609578419173">
+    <state x="-706" y="194" key="FileChooserDialogImpl" timestamp="1610135376866">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-706" y="194" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609578419173" />
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1609668148973">
+    <state x="-706" y="194" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610135376866" />
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1610186463120">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609668148973" />
-    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1609668148973">
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610186463120" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1610186463119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609668148973" />
-    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1609668148973">
+    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610186463119" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1610186463118">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609668148973" />
-    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1609668148973">
+    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610186463118" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1610186463119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1609668148973" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610186463119" />
     <state x="540" y="254" key="IDE.errors.dialog" timestamp="1609583658669">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

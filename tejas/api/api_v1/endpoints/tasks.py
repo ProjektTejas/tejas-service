@@ -5,7 +5,7 @@ from tejas.core.boto_client import tasks_table
 router = APIRouter()
 
 
-@router.get("/task_details")
+@router.get("/details")
 def task_details(*, task_id: str):
     task_return = tasks_table.get_item(
         Key={

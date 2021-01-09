@@ -1,3 +1,4 @@
+import json
 from io import BytesIO
 from typing import Dict, Any
 
@@ -6,28 +7,39 @@ import torchvision.transforms as T
 import torch.nn.functional as F
 
 from PIL import Image
-from fastapi import APIRouter, UploadFile, File, Form
-from pydantic import BaseModel
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from torch import Tensor
 from torch.jit import ScriptModule
 
+from loguru import logger
+
+from tejas import schemas
+from tejas.api.api_v1.exceptions import TrainingNotCompleted
+from tejas.core.boto_client import tasks_table
 
 router = APIRouter()
 
 
-class ClassifyModelMeta(BaseModel):
-    modelName: str
-    modelPath: str
-    idxToClassname: Dict[int, str]
+@router.post("/classify_image")
+async def classify_image(*, task_id: str = Form(...), file: UploadFile = File(...)):
 
+    # fetch the model details of task
+    task = tasks_table.get_item(Key={"taskId": task_id})["Item"]
 
-@router.post("/classify")
-async def classify_image(
-    *, model_meta: ClassifyModelMeta = Form(...), file: UploadFile = File(...)
-):
-    model: ScriptModule = torch.jit.load(model_meta.modelPath)
+    logger.info(f"Received classify for {task}")
 
-    if model_meta.modelName == "mobilenet_v2":
+    if task["taskStatus"] != "COMPLETED":
+        raise TrainingNotCompleted(task_id=task_id)
+
+    # load the model
+    model: ScriptModule = torch.jit.load(task["taskResult"]["modelPath"])
+
+    # load the idxToClass
+    with open(task["taskResult"]["idxToClassnamePath"], "r") as f:
+        idx_to_classname: Dict[str, str] = json.load(f)
+
+    # create the transforms based on the model type
+    if task["taskArgs"]["modelName"] == "mobilenet_v2":
         transform: T.Compose = T.Compose(
             [
                 T.Resize((224, 224)),
@@ -47,8 +59,10 @@ async def classify_image(
     # reset the file cursor
     file.file.seek(0)
     contents = await file.read()
+    # load the image file
     image = Image.open(BytesIO(contents))
 
+    # transform the image
     trans_image: Tensor = transform(image).unsqueeze(0)
 
     # perform inference
@@ -57,15 +71,18 @@ async def classify_image(
         predicted = F.softmax(output)
     sorted_values = predicted.argsort(descending=True).cpu().numpy()
 
+    # return the top 10 predictions (at most 10)
     top10pred = list(
         map(
             lambda x: {
                 "class_idx": x.item(),
-                "class_name": model_meta.idxToClassname[x],
+                "class_name": idx_to_classname[str(x)],
                 "confidence": predicted[x].item(),
             },
             sorted_values,
         )
     )[:10]
+
+    logger.info(top10pred)
 
     return top10pred
