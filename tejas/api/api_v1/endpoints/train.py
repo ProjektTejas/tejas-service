@@ -16,6 +16,8 @@ from tejas.core.boto_client import (
     download_models_bucket,
 )
 
+from botocore.client import Config
+
 router = APIRouter()
 
 
@@ -81,8 +83,8 @@ def download_model(*, task_id: str):
     response = s3_client.generate_presigned_url(
         "get_object",
         Params={"Bucket": settings.MODELS_BUCKET, "Key": Path(model_zip_path).name},
-        ExpiresIn=3600,
-    )
+        ExpiresIn=300,
+    )  # expires in 5 mins
 
     logger.info(f"PreSigned Download URL: {response}")
 
