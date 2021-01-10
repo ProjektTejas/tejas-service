@@ -72,12 +72,15 @@ functions:
       TEJAS_LIBS_PATH: /mnt/tejas-fs/tejas-libs
       TEJAS_MODELS_PATH: /mnt/tejas-fs/tejas-models
       TEJAS_MODELS_BUCKET: ${self:custom.tejasModelsBucket}
+      TEJAS_DATASETS_BUCKET: ${self:custom.tejasDatasetsBucket}
       TEJAS_DATASETS_PATH: /mnt/tejas-fs/tejas-datasets
       TEJAS_MODEL_TRAIN_LAMBDA_ARN: arn:aws:lambda:ap-south-1:668527606260:function:tejas-ml-service-dev-train_model
 
 custom:
   tasksTableName: tejastasks
   tejasModelsBucket: ${self:service}-${self:provider.stage}-models
+  # the datasets buckets is tied with tejas-ml-service make sure to use the same name
+  tejasDatasetsBucket: tejas-service-datasets
 
 resources:
   Resources:

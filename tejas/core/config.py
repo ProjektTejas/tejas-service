@@ -22,11 +22,11 @@ class Settings(BaseSettings):
 
     TASKS_TABLE = os.environ["TASKS_TABLE"]
 
+    #    DATASETS_PATH = Path(os.environ["TEJAS_DATASETS_PATH"])
     MODELS_PATH = Path(os.environ["TEJAS_MODELS_PATH"])
 
     MODELS_BUCKET: str = os.environ["TEJAS_MODELS_BUCKET"]
-
-    DATASETS_PATH = Path(os.environ["TEJAS_DATASETS_PATH"])
+    DATASETS_BUCKET: str = os.environ["TEJAS_DATASETS_BUCKET"]
 
 
 settings = Settings()

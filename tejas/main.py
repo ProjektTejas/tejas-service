@@ -45,27 +45,28 @@ def read_root():
     return {"hello", "world"}
 
 
-@app.get("/invoke")
-async def invoke_train():
-    logger.info(f"Invoking: {settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN}")
-
-    lambda_client.invoke(
-        FunctionName=settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN,
-        InvocationType="Event",
-        Payload=json.dumps(
-            {
-                "taskId": str(uuid.uuid4()),
-                "args": {
-                    "datasetZip": str(
-                        settings.DATASETS_PATH / "indian-face-dataset.zip"
-                    ),
-                    "modelName": "mobilenet_v2",
-                },
-            }
-        ),
-    )
-
-    return {"invoked": "successfully"}
+# invoke is deprecated, i cant invoke one lambda from another, instead i now rely on S3 events
+# @app.get("/invoke")
+# async def invoke_train():
+#     logger.info(f"Invoking: {settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN}")
+#
+#     lambda_client.invoke(
+#         FunctionName=settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN,
+#         InvocationType="Event",
+#         Payload=json.dumps(
+#             {
+#                 "taskId": str(uuid.uuid4()),
+#                 "args": {
+#                     "datasetZip": str(
+#                         settings.DATASETS_PATH / "indian-face-dataset.zip"
+#                     ),
+#                     "modelName": "mobilenet_v2",
+#                 },
+#             }
+#         ),
+#     )
+#
+#     return {"invoked": "successfully"}
 
 
 # web sockets do not work with mangum, so we will have to halt this for now

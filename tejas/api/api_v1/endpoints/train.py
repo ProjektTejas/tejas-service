@@ -2,21 +2,18 @@ import json
 import shutil
 import uuid
 
-from fastapi import APIRouter, UploadFile, File, Form, Response
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, UploadFile, File, Form
 from pathlib import Path
 from zipfile import ZipFile
 from loguru import logger
+from datetime import datetime
 
 from tejas import schemas, settings
 from tejas.core.boto_client import (
-    lambda_client,
     tasks_table,
     s3_client,
     download_models_bucket,
 )
-
-from botocore.client import Config
 
 router = APIRouter()
 
@@ -24,24 +21,64 @@ router = APIRouter()
 @router.post("/train_model", response_model=schemas.TaskId)
 def create_train_task(*, model_name: str = Form(...), file: UploadFile = File(...)):
 
-    dataset_path = settings.DATASETS_PATH / file.filename
+    # now deprecated
+    # dataset_path = settings.DATASETS_PATH / file.filename
 
     # reset the file cursor
     file.file.seek(0)
-    save_upload_file(file, dataset_path)
+    # save the file in tmp folder
+    temp_file_path = Path("/tmp") / file.filename
+    save_upload_file(file, temp_file_path)
+
+    # upload it to S3 bucket
+    datasets_bucket = settings.DATASETS_BUCKET
 
     # invoke the model training process
+
+    # create the task in DDB
     task_id: str = str(uuid.uuid4())
-    lambda_client.invoke(
-        FunctionName=settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN,
-        InvocationType="Event",
-        Payload=json.dumps(
-            {
-                "taskId": task_id,
-                "args": {"datasetZip": str(dataset_path), "modelName": model_name},
-            }
-        ),
+    task_args = {
+        "taskId": task_id,
+        "args": {
+            "modelName": model_name,
+            "dataset": file.filename,
+            "bucket": settings.DATASETS_BUCKET,
+        },
+    }
+
+    logger.info(f"Creating Task: {task_args}")
+
+    # instantiate the task in db
+    new_task = {
+        "taskId": task_id,
+        "taskArgs": task_args,
+        "taskStatus": "INITIALIZING",
+        "taskResult": "",
+        "timestamp": datetime.now().isoformat(),
+    }
+    tasks_table.put_item(Item=new_task)
+
+    # upload to S3 which triggers training
+    s3_client.upload_file(
+        str(temp_file_path),
+        datasets_bucket,
+        file.filename,
+        ExtraArgs={"Metadata": {"args": json.dumps(task_args)}},
     )
+
+    # deprecated
+    # # invoke the model training process
+    # task_id: str = str(uuid.uuid4())
+    # lambda_client.invoke(
+    #     FunctionName=settings.TEJAS_MODEL_TRAIN_LAMBDA_ARN,
+    #     InvocationType="Event",
+    #     Payload=json.dumps(
+    #         {
+    #             "taskId": task_id,
+    #             "args": {"datasetZip": str(dataset_path), "modelName": model_name},
+    #         }
+    #     ),
+    # )
 
     return {"taskId": task_id}
 
