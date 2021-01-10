@@ -38,7 +38,7 @@ VPC Endpoints are essential for this project to work, make sure to enable the fo
 
 ```text
 - com.amazonaws.ap-south-1.dynamodb
-- com.amazonaws.ap-south-1.lambda
+- com.amazonaws.ap-south-1.lambda # not needed, this incurred me costs, since this is a ENI
 - com.amazonaws.ap-south-1.s3
 ```
 
