@@ -11,6 +11,16 @@ EFS must have this structure, and should be mounted to `/mnt/tejas-fs` in Lambda
 - tejas-datasets
 ```
 
+VPC Endpoints are essential for this project to work, make sure to enable the following Endpoints with Appropriate Security Groups and Routing Table
+
+```text
+- com.amazonaws.ap-south-1.dynamodb
+- com.amazonaws.ap-south-1.lambda
+- com.amazonaws.ap-south-1.s3
+```
+
+NOTE: You will be charged for the Endpoints, plan accordingly (Use minimum Availability Zone for Lower Costs)
+
 Download these models into `tejas-pretrained`
 
  ```shell script
