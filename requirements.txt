@@ -1,6 +1,6 @@
 https://download.pytorch.org/whl/cpu/torch-1.7.1%2Bcpu-cp38-cp38-linux_x86_64.whl
 https://download.pytorch.org/whl/cpu/torchvision-0.8.2%2Bcpu-cp38-cp38-linux_x86_64.whl
-fastapi==0.63.0
+fastapi==0.65.2
 mangum==0.10.0
 loguru==0.5.3
 boto3==1.16.47
